@@ -1,0 +1,2 @@
+Just Clone the gitrepo and if node modules are included fine otherwise use the command - npm i
+and then after successfull installation of node-modules start the development server using the following command - npm start
