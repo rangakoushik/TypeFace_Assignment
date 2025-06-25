@@ -1,0 +1,80 @@
+Architecture:
+┌────────────────────────────────────────────────────────────┐
+│                       React Application                     │
+│                                                            │
+│  ┌────────────┐        ┌─────────────┐      ┌──────────┐   │
+│  │            │        │             │      │          │   │
+│  │  ChatList  │◄─────▶│ ChatLayout  │◄────▶│ChatWindow│   │
+│  │            │        │ (State)    │      │          │   │
+│  └────────────┘        └─────────────┘      └──────────┘   │
+│        ▲                     ▲                   ▲         │
+│        │                     │                   │         │
+│        │                     │                   │         │
+│        │                     │                   ▼         │
+│        │                     │              ┌──────────┐   │
+│        │                     │              │          │   │
+│        │                     │              │ Message  │   │
+│        │                     │              │          │   │
+│        │                     │              └──────────┘   │
+│        │                     │                   ▲         │
+│        │                     │                   │         │
+│        │                     ▼                   │         │
+│        │                ┌──────────┐             │         │
+│        └───────────────┤          │─────────────┘         │
+│                        │MessageInput│                      │
+│                        │          │                        │
+│                        └──────────┘                        │
+└────────────────────────────────────────────────────────────┘
+
+so like in this the key functionalities  are:
+Key Functions:
+
+handleSelectChat(): Changes the active chat that is clicked
+handleSendMessage(): Adds a new message to a chat
+handleCreateChat(): It will creates a new chat and adds the new chat to the existing chat
+handleDeleteChat(): Removes a chat and its messages completly
+
+DATA FLOW:
+┌────────────────────┐
+│                    │
+│ User Interaction   │
+│                    │
+└─────────┬──────────┘
+          │
+          ▼
+┌────────────────────┐         ┌────────────────────┐
+│                    │         │                    │
+│ Component Handler  │────────▶│ State Update       │
+│                    │         │                    │
+└────────────────────┘         └─────────┬──────────┘
+                                         │
+                                         ▼
+┌────────────────────┐         ┌────────────────────┐
+│                    │         │                    │
+│ Component Re-render│◀────────│ Props Propagation  │
+│                    │         │                    │
+└────────────────────┘         └────────────────────┘
+
+State Management is handled in chatlayout Component
+
+This is just front end with above mentioned functionalities
+Props that are used:
+
+chats: List of chat objects
+activeChat: Currently selected chat
+onSelectChat: Callback for chat selection
+onDeleteChat: Callback for chat deletion
+onCreateChat: Callback for creating new chats
+
+Components and their usages:
+ChatList:Displays sidebar with list of available chats
+ChatWindow:Displays the active chat's messages and input field
+Message: For rendering individual messages
+MessageInput: For typing and sending new messages
+
+Features:
+Textarea for typing messages
+Send button with disabled state
+Enter key support for sending
+
+ I used Normal Css instead of TailwindCss
